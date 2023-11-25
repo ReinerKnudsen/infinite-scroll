@@ -2,7 +2,7 @@
 ZTM Project creating an infinitely scrollable screen
 
 This project is part of the ZTM JavaScript project series.
-This app pulls images from [Unsplash[(https://unsplash.com) and adds them to this page. Once the user scrolls down the page more images are loaded.
+This app pulls images from [Unsplash](https://unsplash.com) and adds them to this page. Once the user scrolls down the page more images are loaded.
 
 To support users with slow network connectivity and mobile usage only 5 pictures will be loaded when the page is called. All further calls to Unsplash will pull 30 pictures.
 
