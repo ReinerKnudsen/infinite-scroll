@@ -1,13 +1,22 @@
 const imageContainer = document.getElementById('image-container');
-const spinner = document.getElementById('loader');
+const spinnerElement = document.getElementById('spinner');
 
+let ready = false;
+let imagesLoaded = 0;
 let photosArray = [];
-
-// Unsplash API
-const imageCount = 10;
+let imageCount = 5;   // start with 5 images for slower network
 const apiKey  = 'z9hUWq3vIrbTFhlHa9DaYGRxR6ggu1HUbpxxFwLTGrQ';
-const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${imageCount}`
+let apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${imageCount}`
 
+function imageLoaded(){
+	imagesLoaded++;
+	if( imagesLoaded === imageCount) {
+		ready = true;
+		spinnerElement.hidden = true;
+		imageCount = 20;			// after first load, increase number of images
+		apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${imageCount}`;
+	}
+}
 
 function setAttributes( element, attributes) {
 	for( const key in attributes) {
@@ -37,6 +46,10 @@ function displayPhotos() {
 		const attribution = document.createElement('p');
 		attribution.classList.add('attribution');
 		attribution.appendChild(attributionText);
+		
+		// Event Listener to check when images are finished loading
+		img.addEventListener('load', imageLoaded)
+		
 		// Nest img into a
 		item.appendChild(img);
 		// Nest a into container
@@ -49,11 +62,18 @@ async function getImages() {
 	try{
 		const response = await fetch(apiUrl);
 		photosArray = await response.json();
-		console.log(photosArray);
 		displayPhotos();
 	} catch(error) {
-
+		console.log('Fehler beim Laden der Images von Unsplash: ', error);
 	}
 }
+
+window.addEventListener('scroll', () => {
+	if( window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000 && ready) {
+		imagesLoaded = 0;
+		ready = false;
+		getImages();
+		}
+	})
 
 getImages();
