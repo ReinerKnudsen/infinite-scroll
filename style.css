@@ -21,6 +21,10 @@ h1 {
 	letter-spacing: 5px;
 }
 
+.intro {
+	text-align: center;
+}
+
 .spinner {
 	position: fixed;
 	top: 0;
