@@ -1,9 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 html {
 	box-sizing: border-box;
 }
 
 body {
+	font-family: 'Bebas Neue', sans-serif;
 	margin: 0;
 	min-height: 100vh;
+	background-color: whitesmoke;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 50px;
+	/* the img will get a 10px top margin; therefore this will center the headline nicely
+			between the top and the first image */
+	margin-bottom: 40px;
+	font-size: 3rem;
+	letter-spacing: 5px;
+}
+
+.loader {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+}
+
+.loader img {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	/* centers the image in the center of the page*/
+	transform: translate(-50%, -50%);
+}
+
+.image-container {
+	margin: 10px 30%;
+}
+.image-container img {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.attribution {
+	text-align: center;
+	font-size: 1em;
+}
+
+@media screen and (max-width: 600px) {
+	h1 {
+		font-size: 20px;
+	}
+	.image-container {
+		margin: 10px;
+	}
 }
